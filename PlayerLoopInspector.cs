@@ -40,16 +40,17 @@ namespace Utilities
                 style =
                 {
                     flexDirection = FlexDirection.Row,
-                    alignSelf = Align.Center
+                    justifyContent = Justify.SpaceBetween,
+                    marginLeft = 5, marginRight = 5, marginTop = 5, marginBottom = 5
                 }
             };
-            var loopSelectionGroup = new ToggleButtonGroup();
-            loopSelectionGroup.Add(new Button(ShowCurrent) { text = "Show Current" });
-            loopSelectionGroup.Add(new Button(ShowDefault) { text = "Show Default" });
-            loopSelectionGroup.SetValueWithoutNotify(new ToggleButtonGroupState(showCurrent ? 1u : 2u, 2));
+            var loopSelectionGroup = new VisualElement { style = { flexDirection = FlexDirection.Row } };
+            loopSelectionGroup.Add(new Button(ShowCurrent) { text = "Current" });
+            loopSelectionGroup.Add(new Button(ShowDefault) { text = "Default" });
             buttonsContainer.Add(loopSelectionGroup);
 
-            buttonsContainer.Add(new Button(EditorGUIUtility.FindTexture(EditorGUIUtility.isProSkin ? "d_Refresh" : "Refresh"), Refresh));
+            var refreshButton = new Button(Refresh) { text = "Reload" };
+            buttonsContainer.Add(refreshButton);
 
             rootVisualElement.Add(buttonsContainer);
 
